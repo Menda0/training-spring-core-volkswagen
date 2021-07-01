@@ -1,0 +1,46 @@
+<?xml version = "1.0" encoding = "UTF-8"?>
+
+<beans xmlns = "http://www.springframework.org/schema/beans"
+       xmlns:xsi = "http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation = "http://www.springframework.org/schema/beans
+   http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+
+    <bean id="engine" class="com.training.spring.core.volkswagen.car.Engine" >
+        <property name="type" value="electric" />
+        <property name="fuel" value="battery" />
+    </bean>
+
+    <bean class="com.training.spring.core.volkswagen.car.Tyres" >
+        <property name="brand" value="continental" />
+        <property name="type" value="winter" />
+    </bean>
+
+<!--    <bean id="tyres2" class="com.training.spring.core.volkswagen.car.Tyres" >-->
+<!--        <property name="brand" value="michelin" />-->
+<!--        <property name="type" value="summer" />-->
+<!--    </bean>-->
+
+    <!-- This is a problem because this generate multiple candidates for a dependency of type com.training.spring.core.volkswagen.car.Engine -->
+    <!-- autowire-candidate=false removes this bean for a potential autowiring candidate -->
+    <bean id="dieselEngine" class="com.training.spring.core.volkswagen.car.Engine" autowire-candidate="false">
+        <property name="type" value="diesel"/>
+        <property name="fuel" value="diesel" />
+    </bean>
+
+    <bean id="teslax" class="com.training.spring.core.volkswagen.car.Car" autowire="byType">
+        <property name="brand" value="Tesla"/>
+        <property name="model" value="x" />
+    </bean>
+
+    <bean id="teslay" class="com.training.spring.core.volkswagen.car.Car" autowire="byName" >
+        <property name="model" value="y"/>
+        <property name="brand" value="tesla" />
+    </bean>
+
+    <!-- autowire by constructor will preforme a best fit between autoriwing byName and byType -->
+    <bean id="teslas" class="com.training.spring.core.volkswagen.car.Car" autowire="constructor" >
+        <constructor-arg name="model" value="s"/>
+        <constructor-arg name="brand" value="tesla"/>
+    </bean>
+
+</beans>

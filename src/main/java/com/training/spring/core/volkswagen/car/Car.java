@@ -9,6 +9,8 @@ public class Car {
 
     private Tyres tyres;
 
+    private Engine engine;
+
     public Car() { }
 
     public Car(String brand, String model, Tyres tyres){
@@ -45,12 +47,21 @@ public class Car {
         this.tyres = tyres;
     }
 
+    public Engine getEngine() {
+        return engine;
+    }
+
+    public void setEngine(Engine engine) {
+        this.engine = engine;
+    }
+
     @Override
     public String toString() {
         return "Car{" +
                 "brand='" + brand + '\'' +
                 ", model='" + model + '\'' +
                 ", tyres=" + tyres +
+                ", engine=" + engine +
                 '}';
     }
 }

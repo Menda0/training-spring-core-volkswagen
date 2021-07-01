@@ -1,0 +1,32 @@
+
+<beans xmlns = "http://www.springframework.org/schema/beans"
+       xmlns:xsi = "http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation = "http://www.springframework.org/schema/beans
+   http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+
+    <!-- Electric engine -->
+    <bean id="electricEngine" class="com.training.spring.core.volkswagen.car.Engine">
+        <property name="type" value="electric" />
+        <property name="fuel" value="battery" />
+    </bean>
+
+    <!-- Tyres summer michelin -->
+    <bean id="summerTyres" class="com.training.spring.core.volkswagen.car.Tyres" >
+        <property name="type" value="summer" />
+        <property name="brand" value="michelin" />
+    </bean>
+
+    <!-- Create a car blueprint for summer electric cars -->
+    <bean id="summerElectricBlueprint" class="com.training.spring.core.volkswagen.car.Car" >
+        <property name="engine" ref="electricEngine" />
+        <property name="tyres" ref="summerTyres" />
+    </bean>
+
+    <!-- Tesla x -->
+    <bean id="teslaX" class="com.training.spring.core.volkswagen.car.Car" parent="summerElectricBlueprint">
+        <property name="model" value="X" />
+        <property name="brand" value="tesla" />
+    </bean>
+
+
+</beans>
